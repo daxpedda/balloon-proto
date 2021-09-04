@@ -1,0 +1,22 @@
+name: CI
+on:
+  push:
+    branches:
+      - rust
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: test
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Set BALLOON_OPENSSL_INSTALL
+        run: echo BALLOON_OPENSSL_INSTALL=$HOME/balloon-openssl >> $GITHUB_ENV
+      - name: Test
+        run: cargo -vv test
+      - name: Cache OpenSSL
+        uses: actions/cache@v2
+        with:
+          path: ~/balloon-openssl
+          key: ${{ hashFiles('build.rs') }}
