@@ -12,7 +12,7 @@ jobs:
       - name: Install scons
         run: sudo apt-get install scons
       - name: Checkout sources
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set BALLOON_OPENSSL_INSTALL
         run: echo BALLOON_OPENSSL_INSTALL=$HOME/balloon-openssl >> $GITHUB_ENV
       - name: Test
